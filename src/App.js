@@ -1,29 +1,32 @@
 import {useEffect, useState} from "react";
-import {getUsers, getUser} from "./services/api";
-import Users from "./components/users/Users";
-import UserDetails from "./components/user.details/UserDetails";
+import {getPost, getPosts} from "./services/api.posts";
+import Details from "./components/details.post/Details";
+import Posts from "./components/posts/Posts";
 
 export default function App() {
+    
+    const [posts, setPosts] = useState([]);
+    const [detailsPost, setDetailsPost] = useState([null]);
 
-  const [users,setUsers] = useState([]);
-  const [userDetails,setUserDetails] = useState(null);
+    useEffect(()=> {
+        getPosts().then(response => {
+            setPosts(response.data)
+        })
+    },[])
 
-  useEffect(()=>{
-    getUsers().then(response => {
-      setUsers(response.data)
-    })
-  },[]);
+    function openDetails(id) {
+        getPost(id).then(({data}) => setDetailsPost(data))
+        }
 
-  function select(id) {
-      getUser(id).then(({data}) => setUserDetails(data))
-  }
+
     return (
         <div>
-        <Users items={users} select={select}/>
+        <Posts items={posts} openDetails={openDetails}/>
             <hr/>
-        {
-          userDetails && <UserDetails details={userDetails}/>
-        }
+            <br/>
+            {
+                detailsPost && <Details details={detailsPost}/>
+            }
         </div>
     );
 }
