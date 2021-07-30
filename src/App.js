@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from "react";
+import {getComment, getComments} from "./services/api.services";
+import Comments from "./compon/comments/Comments";
+import CommentDetails from "./compon/comment.details/CommentDetails";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+
+  const [comments, setComments] = useState([]);
+  const [commentDetails, setCommentDetails] = useState([null]);
+
+  useEffect(()=> {
+    getComments().then(response => {
+        setComments(response.data)
+    })
+  },[]);
+
+  function detailsComment(id) {
+      getComment(id) .then(({data}) => setCommentDetails(data))
+  }
+
+    return (
+        <div>
+        <Comments items={comments} detailsComment={detailsComment}/>
+            <hr/>
+            <br/>
+            {
+                commentDetails && <CommentDetails details={commentDetails}/>
+            }
+        </div>
+    );
 }
-
-export default App;
