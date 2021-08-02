@@ -1,8 +1,7 @@
 export default function Comments({item}) {
-    console.log({item})
     return (
         <div>
-            {item.body}
+            <b><i>{item.body}</i></b>
         </div>
     );
 }
