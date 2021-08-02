@@ -1,23 +1,22 @@
-import {useReducer} from "react";
-
-function reducer(state, action) {
-    switch (action.type) {
-        case 'INC_A':
-            return {...state, a: state.a + action.payload}
-        case 'INC_B':
-            return {...state, b: state.b + action.payload}
-        default: return {...state}
-    }
-}
+import {Route, BrowserRouter as Router, Link, Switch} from "react-router-dom";
+import Users from "./components/users/Users";
+import Posts from "./components/users/posts/Posts";
 
 export default function App() {
-
-    const [{a, b}, dispatch] = useReducer(reducer, {a: 0, b: 0})
-
     return (
-        <div>
-            <button onClick={() => dispatch({type: 'INC_A', payload: 1})}>click me A {a}</button>
-            <button onClick={() => dispatch({type: 'INC_B', payload: 2})}>click me B {b}</button>
-        </div>
+        <Router>
+            <div><button><Link to={'/users'}>users page</Link></button></div>
+            <div><button><Link to={'/posts'}>posts page</Link></button></div>
+
+            <Switch>
+                <Route path={'/users'} render={() => {
+                return <Users/>
+                }}/>
+                  <Route path={'/posts'} render={() => {
+                    return <Posts/>
+                }}/>
+            </Switch>
+
+        </Router>
     );
 }
