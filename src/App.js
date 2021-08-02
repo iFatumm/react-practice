@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {useReducer} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function reducer(state, action) {
+    switch (action.type) {
+        case 'INC_A':
+            return {...state, a: state.a + action.payload}
+        case 'INC_B':
+            return {...state, b: state.b + action.payload}
+        default: return {...state}
+    }
 }
 
-export default App;
+export default function App() {
+
+    const [{a, b}, dispatch] = useReducer(reducer, {a: 0, b: 0})
+
+    return (
+        <div>
+            <button onClick={() => dispatch({type: 'INC_A', payload: 1})}>click me A {a}</button>
+            <button onClick={() => dispatch({type: 'INC_B', payload: 2})}>click me B {b}</button>
+        </div>
+    );
+}
