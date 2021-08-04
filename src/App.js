@@ -1,5 +1,5 @@
 import {Link, Route, Switch} from "react-router-dom";
-import Posts from "./comment/posts/Posts";
+import Posts from "./components/posts/Posts";
 
 
 export default function App() {
