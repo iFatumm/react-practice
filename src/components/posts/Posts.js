@@ -15,9 +15,6 @@ export default function Posts() {
     return (
         <div>
             {posts.map(value => <Post key={value.id} item={value}/>)}
-            <Switch>
-                <Route path={'/posts/:id'} component={PostDetails}/>
-            </Switch>
         </div>
     );
 }

@@ -14,7 +14,7 @@ export default function PostDetails(props) {
     return (
         <div>
             {post.body}
-            <button><Link to={'/posts/' + id + '/comments'}></Link>comments details</button>
+            <button><Link to={'/posts/' + id + '/comments'}>comments details</Link></button>
 
 
         </div>
