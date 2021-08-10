@@ -1,5 +1,6 @@
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {getPost} from "../../services/api";
 
 export default function PostDetails(props) {
@@ -13,11 +14,9 @@ export default function PostDetails(props) {
 
     return (
         <div>
-            {post.body}
+            {post.body}<br/>
+            "{post.title}"
             <button><Link to={'/posts/' + id + '/comments'}>comments details</Link></button>
-
-
         </div>
-
     );
 }

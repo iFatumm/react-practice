@@ -1,20 +1,20 @@
-import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {getComment} from "../../services/api";
 
 export default function CommentDetails(props) {
-// /
 
-    const [comment, setComment] = useState({});
     const {id} = useParams();
-    console.log(comment)
-    useEffect(()=> {
+    const [comment, setComment] = useState({});
+
+    useEffect(()=>{
         getComment(id).then(value => setComment({...value.data}))
     },[id])
 
     return (
         <div>
-            {comment.body}
+            {comment.body}<br/>
+            "{comment.email}"
         </div>
     );
 }

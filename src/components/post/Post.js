@@ -1,11 +1,10 @@
-import {Link, Route, Switch} from "react-router-dom";
-import Comments from "../comments/Comments";
+import {Link} from "react-router-dom";
 
 export default function Post({item}) {
     return (
         <div>
-            {item.title} <button><Link to={'/posts/' + item.id}>details</Link></button>
-
+            {item.title}
+            <button><Link to={'/posts/' + item.id}>posts details</Link></button>
         </div>
     );
 }

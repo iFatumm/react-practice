@@ -1,9 +1,8 @@
 import {Link, Route, Switch} from "react-router-dom";
 import Posts from "./components/posts/Posts";
-import Comments from "./components/comments/Comments";
 import PostDetails from "./components/post.details/PostDetails";
+import Comments from "./components/comments/Comments";
 import CommentDetails from "./components/comment.details/CommentDetails";
-
 
 export default function App() {
     return (
