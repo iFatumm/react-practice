@@ -4,14 +4,50 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+
+const initialState = {
+    counterValue: 0,
+    posts: []
+}
+
+const counterReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'INC': {
+            return {...state, counterValue: state.counterValue + 1}
+        }
+        case 'DEC': {
+            return {...state, counterValue: state.counterValue - 1}
+        }
+        case 'RESET': {
+            return {...state, counterValue: 0}
+        }
+        case 'CHOOSE_NUMBER': {
+            return {...state, counterValue: state.counterValue + action.payload}
+        }
+        case 'ARIF': {
+            return {...state, counterValue: state.counterValue * (action.payload)}
+        }
+        case 'SET_POSTS': {
+            return {...state, posts: action.payload}
+        }
+        default:
+            return state
+    }
+}
+
+const store = createStore(counterReducer);
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Router>
-          <App/>
-      </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Router>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </Router>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
