@@ -17,7 +17,6 @@ export default function Posts() {
         <div>
             {
                 postsList.map(value => <div key={value.id}>{value.id}. {value.title}</div>)
-
             }
 
         </div>
