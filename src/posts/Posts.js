@@ -21,12 +21,12 @@ export default function Posts() {
 
     return (
         <div>
-            {/*{posts.map(post => (*/}
-            {/*    <div key={post.id}>*/}
-            {/*        <p><i>{post.title}</i></p>*/}
-            {/*        <p><b>{post.body}</b></p>*/}
-            {/*    </div>*/}
-            {/*))}*/}
+            {posts.map(post => (
+                <div key={post.id}>
+                    <p><i>{post.title}</i></p>
+                    <p><b>{post.body}</b></p>
+                </div>
+            ))}
             Гімно стається
         </div>
     );
