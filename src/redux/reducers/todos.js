@@ -8,10 +8,13 @@ export const todosReducer = (state = initialState, action) => {
             return {...state, todos: action.payload}
         }
         case 'LOADING_TRUE': {
-            return {...state, todos: true}
+            return {...state, todosLoading: true}
         }
         case 'LOADING_FALSE': {
-            return {...state, todos: false}
+            return {...state, todosLoading: false}
+        }
+        case 'PUSH_TODO': {
+            return {...state, todos: [...state.todos, action.payload]}
         }
         default:
             return state

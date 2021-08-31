@@ -9,6 +9,7 @@ const CreateTodoForm = ({onSubmit}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if(!title || !description) return;
 
         try {
@@ -42,7 +43,7 @@ const Todos = ({todos, isLoading}) => {
                 <Fragment key={todo.id}>
                     <div>{todo.title}</div>
                     <div>{todo.description}</div>
-                    <div>Created At: {new Date(todo.createdAt).toDateString()}</div>
+                    <div>Create At: {new Date(todo.createdAt).toDateString()}</div>
                     <hr/>
                 </Fragment>
             ))}
@@ -80,7 +81,8 @@ function App() {
             headers:{'Content-Type':'application/json'}
         })
         const data = await response.json();
-        console.log(data, 'onTodoCreate')
+
+        dispatch({type: 'PUSH_TODO', payload: data})
     }
 
     return (
