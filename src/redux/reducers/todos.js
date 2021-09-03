@@ -1,8 +1,9 @@
 const initialState = {
     todos: [],
-    todosLoading: false
+    todosLoading: false,
 }
-export const todosReducer = (state = initialState, action) => {
+
+export const todosReducer = (state = initialState, action)=> {
     switch (action.type) {
         case 'ADD_TODOS': {
             return {...state, todos: action.payload}
@@ -16,7 +17,6 @@ export const todosReducer = (state = initialState, action) => {
         case 'PUSH_TODO': {
             return {...state, todos: [...state.todos, action.payload]}
         }
-        default:
-            return state
+        default: return state
     }
 }
