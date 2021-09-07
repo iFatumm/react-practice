@@ -17,6 +17,10 @@ export const todosReducer = (state = initialState, action)=> {
         case 'PUSH_TODO': {
             return {...state, todos: [...state.todos, action.payload]}
         }
+        case 'DELETE_TODO': {
+            const newArr = state.todos.filter((item)=> item.id !== action.payload)
+            return {...state, todos: newArr}
+        }
         default: return state
     }
 }

@@ -31,12 +31,16 @@ const CreateTodoForm = ({onSubmit}) => {
                    placeholder="todo description"/>
             <br/>
             <button type="submit" disabled={!title || !description || isLoading}>create todo</button>
+
         </form>
     )
 }
 
 const Todos = ({todos, isLoading}) => {
+    const dispatch = useDispatch();
+
     if (isLoading) return <h1>LOADING...</h1>
+
     return (
         <div>
             {todos.map(todo => (
@@ -45,6 +49,7 @@ const Todos = ({todos, isLoading}) => {
                     <div>{todo.description}</div>
                     <div>Created At: {new Date(todo.createdAt).toDateString()}</div>
                     <div>Status {todo.completed.toString()}</div>
+                    <button onClick={() => dispatch({type: 'DELETE_TODO', payload: todo.id})}>Delete</button>
                     <hr/>
                 </Fragment>
             ))}
